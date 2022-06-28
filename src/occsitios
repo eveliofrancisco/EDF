@@ -1,0 +1,58 @@
+casuhfdrvloc.f:        occ(inic:nfin) = ocup
+cdafhmos.f:        write (iwfnew,1061) i,occ(i),zero
+dafhdo.f:      occ(1:nloc)=zero
+drvother.f:      occ(1:nloc) = ocup
+edf.f:      forall (i=1:nmo) occ(i) = d1mata(i)
+edf.f:      oc(1:nmo)=occ(1:nmo)
+edf.f:         occ(1:nmo)=oc(1:nmo)
+fno.f:      occwfn(1:nmo) = occ(1:nmo)
+fno.f:        occ(1:nab) = eigs(1:nab)
+fno.f:        if (ncode.eq.1) occ(1:nab) = 2d0 * eigs(1:nab)
+fno.f:      occ(1:nmo) = occwfn(1:nmo)
+fragno.f:      occwfn(1:nmo) = occ(1:nmo)
+fragno.f:          occ(i)=eigx(i)
+fragno.f:        if (ncode.eq.1) occ(1:nloc) = 2d0 * occ(1:nloc)
+fragno.f:      occ(1:nmo) = occwfn(1:nmo)
+isopycore.f:      oc(1:ncore)=occ(1:ncore)
+isopycore.f:      occ(1:ncore)=oc(1:ncore)
+itdafhc.f:CCCCC       occ(1:nmo)=zero
+itdafhc.f:        occ(1:nloc)=zero
+itdafh.f:CCCC    occ(1:nmo)=zero
+locrohf.f:      allocate (occ(nt))
+locrohf.f:      forall (i=1:nva) occ(i)     = +1d0
+locrohf.f:      forall (i=1:nvb) occ(i+nva) = -1d0
+mindefw.f:            pmat=pmat+coef(k,i)*coef(k,j)*occ(k)
+netrhow.f:                  pmat=pmat+coef(k,i1)*coef(k,i2)*occ(k)
+newfno.f:      occwfn(1:nmo) = occ(1:nmo)
+newfno.f:        occ(1:nab) = eigs(1:nab)
+newfno.f:        if (ncode.eq.1) occ(1:nab) = 2d0 * eigs(1:nab)
+newfno.f:      occ(1:nmo) = occwfn(1:nmo)
+newfno-que-sobra.f:          occ(i)=eigx(i)
+newfno-que-sobra.f:        if (ncode.eq.1) occ(1:nloc) = 2d0 * occ(1:nloc)
+oldotheroqs.f:      occ(1:nloc)=zero
+openrho.f:        occ(1:nmo)=valprop(1:nmo)
+otherfno.f:      occwfn(1:nmo) = occ(1:nmo)
+otherfno.f:        forall (i=1:nloc) occ(i)=eigx(i)
+otherfno.f:        if (ncode.eq.1) occ(1:nloc) = 2d0 * occ(1:nloc)
+otherfno.f:      occ(1:nmo) = occwfn(1:nmo)
+otheroqs.f:        di = abs(occ(ib)) * 2d0 * aom(i1,ib,ib) * aom(i2,ib,ib)
+
+rdwfn.f:C-----read occ(), eorb() and MO coefficients in the primitive basis
+rdwfn.f:c-------The following 7 non-commented lines put the occ() values 
+rdwfn.f:        read (iwfn,106) occ(i),eorb(i) 
+rdwfn.f:*       occ(i) = occ(i) * factor
+rdwfn.f:        totel = totel + abs(occ(i))
+rdwfn.f:      occmin = minval(occ(1:nmo))
+rdwfn.f:      occmax = maxval(occ(1:nmo))
+rdwfn.f:          if (abs(occ(i)-2d0).lt.tolocc) then
+rdwfn.f:          if (abs(occ(i)-1d0).lt.tolocc) then
+rdwfn.f:          if (occ(i).gt.0d0) then
+
+sopenrho.f:CCCC      occ(1:nab)=valprop(1:nab)
+suppress.f:            write (iwfnew,1061) i,occ(isupx(i)),eorb(isupx(i))
+udrvother.f:        occ(inic:nfin) = ocup
+uhfdrvloc.f:        occ(inic:nfin) = ocup
+wfnbasis.f:      allocate (occ(nmo),stat=ier) 
+wfnbasis.f:        stop 'wfnbasis.f: Already allocated occ() array ?'
+wfnbasis.f:          stop 'wfnbasis.f: Already deallocated occ() array ?'
+wrtwfn.f:        write (iwfnew,1061) i,occ(i),zero

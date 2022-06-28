@@ -1,0 +1,128 @@
+c----OPTEDF--OPTEDF--OPTEDF--OPTEDF--OPTEDF--OPTEDF--OPTEDF----------
+c
+c-----Driver routine of the optimization process used to approximate 
+c     EDF as a direct product of (2c,2ne) chemical bond EDFs.
+c
+c     Within the input file of the 'edf' program the following keywords
+c     can be given that are exclusively relevant of this routine:
+c
+c        1) ENDBONDING
+c        2) TYPE
+c        3) TYPE3C
+c        4) PAIR
+c        5) TRIO
+c        6) EPSBOND
+c        7) INICVAR
+c        8) PRIN
+c
+c     The meaning of all of these orders is explained below.
+c
+c     1) 'ENDBONDING'
+c
+c     Sintax: ENDBONDING
+c
+c     Meaing: This order means that all the input that the routine 
+c     'optedf' needs to work has been given, so that the calculation 
+c     can start.
+c
+c     2) 'TYPE'
+c
+c     Sintax: TYPE type qq(type) ifixq(type) ffty(type) ifixf(type)
+c
+c     Meaning: This order defines a type of (2c,2e) bond. The maximum
+c     value of 'type' is MAXBOND, a parameter whose current value is
+c     maxbond=18. To increase the maximum possible number of types of
+c     (2c,2e) bonds just increase the MVAR, MVARH, and MAXBOND values 
+c     in the sentence 'parameter (mvar=36,mvarh=mvar/2,maxbond=18)' 
+c     below and recompile.
+c
+c     'qq(type)' is 'the charge value of the bond', which is a measure
+c     of the polarity of the bond. Its value is optimized in case that
+c      the read in value of 'ifixq(type)' is non zero. Otherwise, the
+c     value of 'qq(type)' is fixed. 
+c
+c     'ffty(type)' if the 'correlation factor of the bond'. Its value 
+c     is optimized in case that the read in value of 'ifixf(type)' is
+c     non zero. Otherwise, the value of 'ffty(type)' is fixed.
+c
+c     NO default values exist for 'qq(type)' and 'ffty(type)' and the
+c     five values after the 'TYPE' keyword are mandatory. Tipical input
+c     values for 'qq(type)' and 'ffty(type)' are 0.5 and 0.0,
+c     respectively.
+c
+c     3) 'TYPE3C'
+c
+c     Sintax: TYPE3C type p200 p020 p002 p110 p101 f200 f020 f002 f110 f101
+c
+c     Meaning: This order defines a type of (3c,2e) bond. The maximum
+c     value of 'type' is MAXBOND3C, a parameter whose current value is
+c     maxbond3c=6. To increase the maximum possible number of types of
+c     (3c,2e) bonds just increase the MAXBOND3C and MVAR3C values in the 
+c     sentence 'parameter (mvar3c=30,maxbond3c=6)' below and recompile. 
+c
+c     'p200 p020 p002' are the input values for the probability that 
+c     both electrons of the 3c bond are located in the first center (p200),
+c     in the second center (p020), or in the third center (p002).
+c
+c     'p110' is the input value for the probability that one of
+c     the electrons of the 3c bond is located in the first center and 
+c     the second electron in the second center.
+c
+c     'p101' is the input value for the probability that one of
+c     the electrons of the 3c bond is located in the first center and 
+c     the second electron in the third center.
+c
+c     'f200 f020 f002 f110 f101' are five integer numbers that determine
+c     if 'p200 p020 p002 p110 p101' are fixed or optimizable parameters.
+c     For instance, f200=1 or 0 means that 'p200' is fixed or optimizable
+c     respectively.
+c
+c      4) 'PAIR'
+c
+c      Sintax: PAIR fragment1 fragment2 type [ rtype ]
+c
+c      Meaning: This order indicates that a (2c,2e) bond of type 'type'
+c      purportedly exists between the groups of atoms 'fragment1' and 
+c      'fragment2'. 
+
+c      'rtype' indicates the resonance structure used. The default is
+c      rtype=1. It is recommended at this moment NOT TO ENTER THE
+c      rtype VALUE IN THIS ORDER.
+c
+c     5) 'TRIO'
+c
+c     Sintax: TRIO fragment1 fragment2 fragment3 type [ rtype ]
+c
+c     Meaing: This order indicates that a (3c,2e) bond of type 'type'
+c     purportedly exists between the groups of atoms 'fragment1',
+c     'fragment2', and 'fragment3'.
+
+c     'rtype' indicates the resonance structure used. The default is
+c     rtype=1. It is recommended at this moment NOT TO ENTER THE
+c     rtype VALUE IN THIS ORDER.
+c
+c     6) 'EPSBOND'
+c
+c     Sintax: EPSBOND epsbond
+c
+c     Convergence threshold in the EDF fitting. This order is not nece-
+c     ssary, since a default value for 'epsbond' exists [10^(-4)].
+c     
+c
+c     7) 'INICVAR'
+c
+c     Sintax: INICVAR h0
+c
+c     Meaning: 'h0' is a parameter used in the EDF fitting. Not necessary 
+c     since a default value exists (0.1).
+c
+c     8) PRIN prin
+c
+c     Sintax: PRIN prin
+c
+c     Meaning: 'prin' is a printing level in the EDF fitting. Not necessary
+c     since a default value exists (0).
+c
+c
+c-----------------------------------------------------------------------
+c

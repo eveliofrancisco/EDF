@@ -1,0 +1,67 @@
+      elseif (ngroup.eq.7) then
+        ia1=0
+        do while (ia1.le.occup(1))
+          occa(1)=ia1
+          ia2=0
+          ia12=ia1+ia2
+          do while (ia2.le.occup(2).and.ia12.le.nta)
+            occa(2)=ia2
+            ia3=0
+            ia123=ia12+ia3
+            do while (ia3.le.occup(3).and.ia123.le.nta)
+              occa(3)=ia3
+              ia4=0
+              ia1234=ia123+ia4
+              do while (ia4.le.occup(4).and.ia1234.le.nta)
+                occa(4)=ia4
+                ia5=0
+                ia12345=ia1234+ia5
+                do while (ia5.le.occup(5).and.ia12345.le.nta)
+                   occa(5)=ia5
+                   ia6=0
+                   ia123456=ia12345+ia6
+                   do while (ia6.le.occup(6).and.ia123456.le.nta)
+                     occa(6)=ia6
+                     ia7=0
+                     ia1234567=ia123456+ia7
+                     do while (ia7.le.occup(7).and.ia1234567.le.nta)
+                       occa(7)=ia7
+                       if (ia1234567.eq.nta) then
+                         docalc=.true.
+                         do i=1,ngroup
+                           if (occa(i).gt.maxp(i).or.
+     &                         occa(i).lt.minp(i)) docalc=.false.
+                         enddo
+                         if (docalc) then
+                           call wrsrs (epsdet,ndets,nta,ntb,nmo,
+     &                          ncore,ngroup,lw,pab,occup,occa,occb)
+                           probal=probal+pab
+                           if (ndets.gt.1) then
+                             call wriprob (pab,occa,occup,ngroup,lw)
+                           endif
+                         else
+                           write (lw,6,advance='no')(occa(i),i=1,ngroup)
+                           write (lw,7) (occup(i)-occa(i),i=1,ngroup)
+                         endif
+                         nspinres=nspinres+1
+                       endif
+                       ia7=ia7+1
+                       ia1234567=ia123456+ia7
+                     enddo
+                     ia6=ia6+1
+                     ia123456=ia12345+ia6
+                   enddo
+                   ia5=ia5+1
+                   ia12345=ia1234+ia5
+                enddo
+                ia4=ia4+1
+                ia1234=ia123+ia4
+              enddo
+              ia3=ia3+1
+              ia123=ia12+ia3
+            enddo
+            ia2=ia2+1
+            ia12=ia1+ia2
+          enddo  
+          ia1=ia1+1
+        enddo
