@@ -4,8 +4,10 @@ Electron Distribution Function code
 
 ## Build instructions
 
+Inside the devcontainer, run
+
 ```bash
-    mkdir build && cd build && cmake .. -DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/miniconda3/lib"
+    mkdir build && cd build && cmake .. && make -j2
 ```
 
 The `edf` executable can be found in the `build` folder.
